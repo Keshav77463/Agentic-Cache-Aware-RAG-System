@@ -20,28 +20,6 @@ Built on Amazon Fine Food Reviews data with **50,000 sampled reviews**.
 
 ---
 
-## 🏗️ Architecture
-
-```mermaid
-flowchart TD
-    A["User Query"] --> B{"Layer 1: Exact Cache (Redis)"}
-    B -- HIT --> Z["Return Cached Answer"]
-    B -- MISS --> C{"Layer 2: Semantic Cache (ChromaDB)"}
-    C -- HIT --> D["Promote to Redis"] --> Z
-    C -- MISS --> E["Layer 3: Full RAG Pipeline"]
-    E --> F["Retrieve Top-K Docs (ChromaDB)"]
-    F --> G["Generate Answer (Groq / Llama 3.1)"]
-    G --> H["Cache in Redis + ChromaDB"]
-    H --> Z
-
-    style B fill:#e74c3c,color:#fff
-    style C fill:#9b59b6,color:#fff
-    style E fill:#3498db,color:#fff
-    style Z fill:#2ecc71,color:#fff
-```
-
----
-
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
